@@ -13,8 +13,8 @@ const auctionSchema = new Mongoose.Schema({
         required: [true, 'Ingrese el nombre del Producto']
     },
     foto_producto: {
-        type: binData,
-        required: [true, 'Ingrese un correo electrónico'],
+        type: String,
+        required: [true, 'Ingrese una foto del producto'],
     },
     descripcion_producto: {
         type: String,
@@ -23,6 +23,10 @@ const auctionSchema = new Mongoose.Schema({
     precio_inicial: {
         type: String,
         required: [true, 'Ingrese el precio inicial del producto']
+    },
+    precio_minimo: {
+        type: String,
+        required: [true, 'Ingrese el precio minimo que recibiria']
     },
     monto_puja: {
         type: String,
