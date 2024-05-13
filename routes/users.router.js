@@ -36,4 +36,35 @@ router.post('/', async function (req, res, next) {
   }
 });
 
+// GET user by ID
+router.get('/:id', async function (req, res, next) {
+  const userId = req.params.id;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return next(createError(404, 'Usuario no encontrado'));
+    }
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    next(createError(500, 'Error al obtener usuario'));
+  }
+});
+
+// DELETE a user by ID
+router.delete('/:id', async function (req, res, next) {
+  const userId = req.params.id;
+
+  try {
+    await User.findByIdAndDelete(userId);
+    res.json(jsonResponse(200, { message: 'Usuario eliminado correctamente' }));
+  } catch (error) {
+    console.log(error);
+    next(createError(500, 'Error al eliminar usuario'));
+  }
+});
+
+
+
 module.exports = router;
