@@ -24,15 +24,15 @@ const auctionSchema = new Mongoose.Schema({
         required: [true, 'Por favor ingrese una descripción del producto']
     },
     precio_inicial: {
-        type: String,
+        type: Number,
         required: [true, 'Ingrese el precio inicial del producto']
     },
     precio_minimo: {
-        type: String,
+        type: Number,
         required: [true, 'Ingrese el precio minimo que recibiria']
     },
     monto_puja: {
-        type: String,
+        type: Number,
         required: [true, 'Por favor ingrese el monto minimo para pujar en la subasta'],
     },
     // tipo_subasta: {

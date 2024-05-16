@@ -17,12 +17,12 @@ router.get('/', async function (req, res, next) {
 });
 
 router.post('/', async function (req, res, next) {
-  const { nombre_producto, foto_producto, descripcion_producto, precio_inicial, precio_minimo, monto_puja, tipo_subasta, contraseña} = req.body;
+  const { nombre_producto, foto_producto, descripcion_producto, precio_inicial, precio_minimo, monto_puja/*, tipo_subasta, contraseña*/} = req.body;
 
-if (!nombre_producto || !foto_producto || !descripcion_producto || !precio_inicial || !precio_minimo ||!monto_puja || !tipo_subasta || !contraseña) {
+if (!nombre_producto || !foto_producto || !descripcion_producto || !precio_inicial || !precio_minimo ||!monto_puja/* || !tipo_subasta || !contraseña*/) {
     next(createError(400, 'No se han ingresado todos los datos'));
-  }else if(nombre_producto && foto_producto && descripcion_producto && precio_inicial && precio_minimo && monto_puja && tipo_subasta && contraseña){
-    const auction = new Auction({nombre_producto, foto_producto, descripcion_producto, precio_inicial, precio_minimo, monto_puja, tipo_subasta, contraseña});
+  }else if(nombre_producto && foto_producto && descripcion_producto && precio_inicial && precio_minimo && monto_puja/* && tipo_subasta && contraseña*/){
+    const auction = new Auction({nombre_producto, foto_producto, descripcion_producto, precio_inicial, precio_minimo, monto_puja/*, tipo_subasta, contraseña*/});
 
     try{
       await auction.save();
