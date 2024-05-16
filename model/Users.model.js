@@ -5,8 +5,11 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 //const validate = require('mongoose-validator')
 const {ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET} = process.env;
-
+const audit = require('../model/auditPlugin')
 const Token = require('./token.model');
+const auditPlugin = require('../model/auditPlugin');
+
+
 
 const userSchema = new Mongoose.Schema({
     name: {
@@ -103,5 +106,5 @@ userSchema.methods.creatRefreshToken = async function(){
         next(new Error('Error creando refresh token'));
     }
 }
-
+userSchema.plugin(auditPlugin)
 module.exports = Mongoose.model('User', userSchema);
