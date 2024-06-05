@@ -6,6 +6,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+
+
 
 require('dotenv').config();
 
@@ -15,6 +19,13 @@ var usersRouter = require('./routes/users.router');
 var auctionsRouter = require('./routes/auctions.router');
 
 var app = express();
+// Express 4.0
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+
+// Express 3.0
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb' }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

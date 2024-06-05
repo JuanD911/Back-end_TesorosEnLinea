@@ -15,10 +15,10 @@ const auctionSchema = new Mongoose.Schema({
         type: String,
         required: [true, 'Ingrese el nombre del Producto']
     },
-    // foto_producto: {
-    //     type: String,
-    //     // required: [true, 'Ingrese una foto del producto'],
-    // },
+    foto_producto: {
+        type: String,
+        required: [true, 'Ingrese una foto del producto'],
+    },
     descripcion_producto: {
         type: String,
         required: [true, 'Por favor ingrese una descripción del producto']

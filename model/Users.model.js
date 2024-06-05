@@ -34,7 +34,14 @@ const userSchema = new Mongoose.Schema({
     clave: {
         type: String,
         required: [true, 'Por favor ingrese una constraseña válida'],
-        minlenght: [6, 'La contraseña debe tener al menos 6 caracteres']
+        min: [8, 'La contraseña debe tener al menos 8 caracteres'],
+        validate: {
+            validator: function(value) {
+                const complexityRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
+                return complexityRegex.test(value);
+            },
+            message: 'La contraseña debe tener al menos una mayúscula, una minúscula, un número y un caracter especial'
+        }
     }
 })
 
