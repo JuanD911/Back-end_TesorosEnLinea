@@ -33,7 +33,7 @@ router.post("/", async function (req, res, next) {
 
     res.status(200).json({
       ok: true,
-      usuario: usuario.name
+      usuario: usuario
     });
   } catch (ex) {
     console.log(ex);
