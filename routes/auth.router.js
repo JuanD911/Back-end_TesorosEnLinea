@@ -2,6 +2,7 @@
 const bcrypt = require('bcrypt');
 var express = require("express");
 const User = require("../model/Users.model");
+const generateJWT = require('../helpers/jwt');
 var router = express.Router();
 
 /* GET users listing. */
@@ -29,11 +30,12 @@ router.post("/", async function (req, res, next) {
 
     //generar Token
 
-   
+    const tokenSesion = await generateJWT(usuario._id,usuario.email)
 
     res.status(200).json({
       ok: true,
-      usuario: usuario
+      usuario,
+      tokenSesion
     });
   } catch (ex) {
     console.log(ex);

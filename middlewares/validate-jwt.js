@@ -1,10 +1,8 @@
 
 
-const  jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 //se crea la interfaz por como se escribe en Mongo el id
-interface CustomRequest extends Request{
-    _id?:number;
-}
+
 
 //si todo fucniona que continue next:NetxFunction
 const validateJWT = (req,res,next) =>{
@@ -20,7 +18,7 @@ const validateJWT = (req,res,next) =>{
     try {
         //firma
         //le enviamos eltoken y verifica si esa llave secreta es la misma con la que se genero el token
-        const {_id} = jwt.verify(token,process.env.JWTSECRET)
+        const {_id} = jwt.verify(token,process.env.ACCESS_TOKEN_SECRET)
         req._id = _id;
 
         next();

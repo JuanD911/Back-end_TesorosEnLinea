@@ -3,6 +3,7 @@ const { jsonResponse } = require('../lib/jsonResponse');
 var router = express.Router();
 const Auction = require('../model/Auctions.model')
 const createError = require('http-errors');
+const { validateJWT } = require('../middlewares/validate-jwt');
 
 router.get('/', async function (req, res, next) {
   let results = {};
@@ -23,7 +24,7 @@ if (!nombre_producto || !foto_producto || !descripcion_producto || !precio_inici
     next(createError(400, 'No se han ingresado todos los datos'));
   }else if(nombre_producto && foto_producto && descripcion_producto && precio_inicial && precio_minimo && monto_puja/* && tipo_subasta && contraseña*/){
     const auction = new Auction({nombre_producto, foto_producto, descripcion_producto, precio_inicial, precio_minimo, monto_puja/*, tipo_subasta, contraseña*/});
-
+    validateJWT
     try{
       await auction.save();
 
